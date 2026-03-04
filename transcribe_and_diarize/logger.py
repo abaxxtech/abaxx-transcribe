@@ -9,7 +9,11 @@ def setup_logger(verbose: bool = False, log_file: Path | None = None) -> logging
     logger.handlers.clear()
     h = logging.StreamHandler(sys.stdout)
     h.setLevel(logging.DEBUG if verbose else logging.INFO)
-    h.setFormatter(logging.Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s" if verbose else "%(message)s"))
+    h.setFormatter(
+        logging.Formatter(
+            "%(asctime)s [%(levelname)s] %(name)s: %(message)s" if verbose else "%(message)s"
+        )
+    )
     logger.addHandler(h)
     if log_file:
         log_file.parent.mkdir(parents=True, exist_ok=True)
